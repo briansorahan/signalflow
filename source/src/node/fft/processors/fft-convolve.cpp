@@ -30,19 +30,8 @@ FFTConvolve::FFTConvolve(NodeRef input, BufferRef buffer)
     signalflow_debug("Buffer length %d frames, fft size %d, hop size %d, doing %d partitions\n",
                      buffer->get_num_frames(), this->fft_size, this->hop_size, this->num_partitions);
 
-    FFT *fft = new FFT(nullptr, this->fft_size, this->hop_size, this->window_size, false);
-    for (int i = 0; i < this->num_partitions; i++)
-    {
-        this->ir_partitions[i] = new sample[this->num_bins * 2]();
-        this->input_history[i] = new sample[this->num_bins * 2]();
-        fft->fft(this->buffer->data[0] + i * this->hop_size,
-                 this->ir_partitions[i],
-                 true,
-                 false);
-    }
-    delete fft;
-
     this->create_buffer("buffer", this->buffer);
+    this->set_buffer("buffer", this->buffer);
 }
 
 FFTConvolve::~FFTConvolve()
@@ -50,6 +39,33 @@ FFTConvolve::~FFTConvolve()
     for (auto partition : this->ir_partitions)
     {
         delete partition;
+    }
+}
+
+void FFTConvolve::set_buffer(std::string name, const BufferRef buffer)
+{
+    if (name == "buffer")
+    {
+        this->buffer = buffer;
+        this->num_partitions = ceil((buffer->get_num_frames() - this->fft_size) / this->hop_size) + 1;
+        if (this->num_partitions < 1)
+            this->num_partitions = 1;
+        this->ir_partitions.resize(this->num_partitions);
+        this->input_history.resize(this->num_partitions);
+
+        FFT *fft = new FFT(nullptr, this->fft_size, this->hop_size, this->window_size, false);
+        for (int i = 0; i < this->num_partitions; i++)
+        {
+            if (!this->ir_partitions[i])
+                this->ir_partitions[i] = new sample[this->num_bins * 2]();
+            if (!this->input_history[i])
+                this->input_history[i] = new sample[this->num_bins * 2]();
+            fft->fft(this->buffer->data[0] + i * this->hop_size,
+                     this->ir_partitions[i],
+                     true,
+                     false);
+        }
+        delete fft;
     }
 }
 

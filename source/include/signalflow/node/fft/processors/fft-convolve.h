@@ -17,7 +17,8 @@ public:
     FFTConvolve(NodeRef input = nullptr, BufferRef buffer = nullptr);
     virtual ~FFTConvolve();
 
-    virtual void process(Buffer &out, int num_frames);
+    virtual void process(Buffer &out, int num_frames) override;
+    virtual void set_buffer(std::string name, const BufferRef buffer) override;
 
 private:
     BufferRef buffer;
