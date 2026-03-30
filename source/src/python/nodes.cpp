@@ -406,6 +406,9 @@
     py::class_<AzimuthPanner, Node, NodeRefTemplate<AzimuthPanner>>(m, "AzimuthPanner", "Pan input around an equally-spaced ring of `num_channels` speakers. `pan` is the pan position from -1..+1, where 0 = centre front. `width` is the source's width, where 1.0 spans exactly between an adjacent pair of channels.")
         .def(py::init<int, NodeRef, NodeRef, NodeRef>(), "num_channels"_a = 2, "input"_a = 0, "pan"_a = 0.0, "width"_a = 1.0);
     
+    py::class_<BinauralPanner, Node, NodeRefTemplate<BinauralPanner>>(m, "BinauralPanner", "Binaural panner.")
+        .def(py::init<NodeRef, NodeRef, NodeRef>(), "input"_a = 0, "azimuth"_a = 0.0, "elevation"_a = 0.0);
+    
     py::class_<ChannelPanner, Node, NodeRefTemplate<ChannelPanner>>(m, "ChannelPanner", "Pan the input between a linear series of channels, where `pan` 0 = channel 0, 1 = channel 1, etc. No wrapping is applied.")
         .def(py::init<int, NodeRef, NodeRef, NodeRef>(), "num_channels"_a = 2, "input"_a = 0, "pan"_a = 0.0, "width"_a = 1.0);
     
