@@ -30,6 +30,7 @@ private:
     sample *output_partition_cartesian;
     sample *output_sum_cartesian;
     sample *output_sum_polar;
+    FFT *fft = nullptr;
 };
 
 REGISTER(FFTConvolve, "fft-convolve")

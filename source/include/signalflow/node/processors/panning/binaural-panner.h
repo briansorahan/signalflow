@@ -28,15 +28,18 @@ public:
 private:
     struct MYSOFA_EASY *hrtf = NULL;
 
-    NodeRef fft_l, fft_r;
-    NodeRef convolve_l, convolve_r;
-    NodeRef ifft_l, ifft_r;
-    float left_ir[2048];
-    float right_ir[2048];
-    BufferRef left_ir_buffer;
-    BufferRef right_ir_buffer;
-    float left_delay_seconds;
-    float right_delay_seconds;
+    NodeRef fft_l0, fft_r0;
+    NodeRef fft_l1, fft_r1;
+    NodeRef convolve_l0, convolve_r0;
+    NodeRef convolve_l1, convolve_r1;
+    NodeRef ifft_l0, ifft_r0;
+    NodeRef ifft_l1, ifft_r1;
+    float ir_l[2048];
+    float ir_r[2048];
+    BufferRef ir_buf_l;
+    BufferRef ir_buf_r;
+    float delay_l;
+    float delay_r;
 
 
 };
