@@ -495,6 +495,14 @@ void Node::set_buffer(std::string name, BufferRef buffer)
     *(this->buffers[name]) = buffer;
 }
 
+BufferRef Node::get_buffer(std::string name)
+{
+    if (this->buffers.find(name) == this->buffers.end())
+        throw std::runtime_error("Node " + this->name + " has no such buffer: " + name);
+
+    return *(this->buffers[name]);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Patches
 ////////////////////////////////////////////////////////////////////////////////

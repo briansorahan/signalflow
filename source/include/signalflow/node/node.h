@@ -194,7 +194,8 @@ public:
      * Get/set buffer properties, as used by BufferPlayer, Granulator, etc.
      *-----------------------------------------------------------------------*/
     virtual void set_buffer(std::string name, BufferRef buffer);
-
+    virtual BufferRef get_buffer(std::string name);
+    
     /*------------------------------------------------------------------------
      * Generic trigger method. 
      *-----------------------------------------------------------------------*/

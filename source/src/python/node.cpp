@@ -218,6 +218,7 @@ void init_python_node(py::module &m)
          * Methods
          *-------------------------------------------------------------------------------*/
         .def("set_buffer", &Node::set_buffer, "string"_a, "buffer"_a, R"pbdoc(Set the value of a node's buffer input)pbdoc")
+        .def("get_buffer", &Node::get_buffer, "string"_a, R"pbdoc(Get the value of a node's buffer input)pbdoc")
         .def("poll", [](Node &node) { node.poll(); }, R"pbdoc(Print the node's last output value, once per second)pbdoc")
         .def("poll", [](Node &node, float frequency) { node.poll(frequency); }, R"pbdoc(Print the node's last output value, at a frequency of `frequency`)pbdoc")
         .def("poll", [](Node &node, float frequency, std::string label) { node.poll(frequency, label); }, R"pbdoc(Print the node's last output value, at a frequency of `frequency`, labelled with `label`)pbdoc")
