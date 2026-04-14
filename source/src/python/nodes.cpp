@@ -409,7 +409,7 @@
     #ifdef __APPLE__
     
     py::class_<BinauralPanner, Node, NodeRefTemplate<BinauralPanner>>(m, "BinauralPanner", "Binaural panner.")
-        .def(py::init<NodeRef, NodeRef, NodeRef>(), "input"_a = 0, "azimuth"_a = 0.0, "elevation"_a = 0.0);
+        .def(py::init<NodeRef, NodeRef, NodeRef, std::string>(), "input"_a = 0, "azimuth"_a = 0.0, "elevation"_a = 0.0, "sofa_path"_a = "P0099_Windowed_48kHz.sofa");
     
     #endif
     

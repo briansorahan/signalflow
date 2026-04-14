@@ -8,7 +8,10 @@ namespace signalflow
 
 const int N = 512;
 
-BinauralPanner::BinauralPanner(NodeRef input, NodeRef azimuth, NodeRef elevation)
+BinauralPanner::BinauralPanner(NodeRef input,
+                               NodeRef azimuth,
+                               NodeRef elevation,
+                               std::string sofa_path)
     : input(input), azimuth(azimuth), elevation(elevation)
 {
     this->name = "binaural-panner";
@@ -20,7 +23,7 @@ BinauralPanner::BinauralPanner(NodeRef input, NodeRef azimuth, NodeRef elevation
 
     int err = 0;
     int filter_length;
-    hrtf = mysofa_open("P0099_Windowed_48kHz.sofa", this->get_graph()->get_sample_rate(), &filter_length, &err);
+    hrtf = mysofa_open(sofa_path.c_str(), this->get_graph()->get_sample_rate(), &filter_length, &err);
     // hrtf = mysofa_open("MIT_KEMAR_normal_pinna.sofa", this->get_graph()->get_sample_rate(), &filter_length, &err);
 
     if (!hrtf)

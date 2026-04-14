@@ -17,7 +17,10 @@ namespace signalflow
 class BinauralPanner : public Node
 {
 public:
-    BinauralPanner(NodeRef input = 0, NodeRef azimuth = 0.0, NodeRef elevation = 0.0);
+    BinauralPanner(NodeRef input = 0,
+                   NodeRef azimuth = 0.0,
+                   NodeRef elevation = 0.0,
+                   std::string sofa_path = "P0099_Windowed_48kHz.sofa");
 
     virtual void process(Buffer &out, int num_frames) override;
 
