@@ -378,6 +378,11 @@ public:
     int get_num_output_channels();
 
     /**--------------------------------------------------------------------------------
+     * Get the name of the audio output device that the graph is connected to.
+     *--------------------------------------------------------------------------------*/
+    const std::string get_output_device_name();
+
+    /**--------------------------------------------------------------------------------
      * Query the number of nodes in the audio graph.
      * This includes all of the nodes in every patch.
      *

@@ -132,4 +132,9 @@ unsigned int AudioOut_Abstract::get_buffer_size()
     return this->buffer_size;
 }
 
+const std::string AudioOut_Abstract::get_device_name()
+{
+    return this->device_name;
+}
+
 } // namespace signalflow

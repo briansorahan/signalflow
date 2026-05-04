@@ -909,6 +909,19 @@ int AudioGraph::get_output_buffer_size()
     }
 }
 
+const std::string AudioGraph::get_output_device_name()
+{
+    if (this->output)
+    {
+        AudioOut_Abstract *output = (AudioOut_Abstract *) this->output.get();
+        return output->get_device_name();
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+
 int AudioGraph::get_num_output_channels()
 {
     if (this->output)

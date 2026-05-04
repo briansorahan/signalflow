@@ -63,6 +63,8 @@ void init_python_graph(py::module &m)
                                R"pbdoc(int: Get the number of output channels available in the graph.)pbdoc")
         .def_property_readonly("output_buffer_size", &AudioGraph::get_output_buffer_size,
                                R"pbdoc(int: Get the current output buffer size, in frames.)pbdoc")
+        .def_property_readonly("output_device_name", &AudioGraph::get_output_device_name,
+                               R"pbdoc(str: Get the name of the audio output device that the graph is connected to.)pbdoc")
         .def_property_readonly(
             "outputs", &AudioGraph::get_outputs,
             R"pbdoc(int: Get the list of Node objects currently connected to the graph's output.)pbdoc")
