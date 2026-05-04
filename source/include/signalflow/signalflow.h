@@ -157,7 +157,6 @@
 #ifdef __APPLE__
 #include <signalflow/node/processors/panning/binaural-panner.h>
 #endif
-#include <signalflow/node/processors/panning/ambisonic-panner.h>
 #include <signalflow/node/processors/panning/azimuth-panner.h>
 #include <signalflow/node/processors/panning/channel-panner.h>
 #include <signalflow/node/processors/panning/spatial-environment.h>
