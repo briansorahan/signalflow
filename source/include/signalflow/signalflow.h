@@ -154,8 +154,11 @@
 #include <signalflow/node/processors/filters/moog.h>
 #include <signalflow/node/processors/filters/svf.h>
 #include <signalflow/node/processors/fold.h>
-#include <signalflow/node/processors/panning/azimuth-panner.h>
+#ifdef __APPLE__
 #include <signalflow/node/processors/panning/binaural-panner.h>
+#endif
+#include <signalflow/node/processors/panning/ambisonic-panner.h>
+#include <signalflow/node/processors/panning/azimuth-panner.h>
 #include <signalflow/node/processors/panning/channel-panner.h>
 #include <signalflow/node/processors/panning/spatial-environment.h>
 #include <signalflow/node/processors/panning/stereo-balance.h>
