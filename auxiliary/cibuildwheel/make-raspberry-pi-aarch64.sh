@@ -13,8 +13,6 @@
 # Fail if any subcommands fail
 set -e 
 
-curl https://raw.githubusercontent.com/mackron/miniaudio/master/miniaudio.h -o source/include/signalflow/node/io/output/miniaudio-library.h
-
 # Install dependencies to build a fully-fledged Python install
 sudo apt-get install build-essential libffi-dev libreadline-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 
