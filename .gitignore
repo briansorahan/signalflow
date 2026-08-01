@@ -31,7 +31,6 @@ dist
 wheelhouse/
 .vscode
 .vs
-miniaudio-library.h
 notes
 envs
 *.pyi
