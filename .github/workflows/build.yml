@@ -13,10 +13,11 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install libasound2-dev libsndfile1-dev fftw3-dev -y
+      - name: Update system package registry
+        run: sudo apt-get update -y
+
+      - name: Install system dependencies
+        run: sudo apt-get install libasound2-dev libsndfile1-dev libfftw3-dev -y
 
       - name: Configure
         run: mkdir build && cd build && cmake ..
