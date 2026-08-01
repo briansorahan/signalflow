@@ -1,3 +1,14 @@
+[project]
+name = "signalflow"
+version = "0.5.4"
+requires-python = ">= 3.13"
+dynamic = ["description", "readme"]
+dependencies = [
+    "numpy>=2.5.1",
+    "pytest>=9.1.1",
+    "scipy>=1.18.0",
+]
+
 [build-system]
 requires = ["setuptools>=62", "wheel", "setuptools_scm", "cmake", "scikit-build"]
 build-backend = "setuptools.build_meta"
