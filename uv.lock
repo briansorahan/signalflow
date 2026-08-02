@@ -155,7 +155,7 @@ wheels = [
 
 [[package]]
 name = "signalflow"
-version = "0.6.0"
+version = "0.6.1"
 source = { editable = "." }
 dependencies = [
     { name = "numpy" },
@@ -166,7 +166,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "numpy", specifier = ">=2.5.1" },
+    { name = "numpy", specifier = ">=2.1.0" },
     { name = "pybind11", specifier = ">=3.0.4" },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "scipy", specifier = ">=1.18.0" },
