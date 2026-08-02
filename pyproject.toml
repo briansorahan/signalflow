@@ -1,8 +1,20 @@
 [project]
 name = "signalflow"
 version = "0.6.0"
+description = "SignalFlow is a sound synthesis library designed for clear and concise expression of sonic ideas"
+readme = "README.md"
 requires-python = ">= 3.13"
-dynamic = ["description", "readme"]
+authors = [
+    { name = "Daniel Jones", email = "dan@erase.net" },
+]
+keywords = ["audio", "sound", "synthesis", "dsp", "sound-synthesis"]
+classifiers = [
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Multimedia :: Sound/Audio :: Sound Synthesis",
+    "Topic :: Artistic Software",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+]
 dependencies = [
     "numpy>=2.5.1",
     "pybind11>=3.0.4",
@@ -10,6 +22,12 @@ dependencies = [
     "scipy>=1.18.0",
 ]
 
+[project.scripts]
+signalflow = "signalflow_cli:main"
+
 [build-system]
 requires = ["setuptools>=62", "wheel", "setuptools_scm", "cmake", "scikit-build"]
 build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
