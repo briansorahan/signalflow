@@ -122,7 +122,7 @@ python3 -m pytest
 
 For each new release:
 
-- Update the version in `setup.cfg`
+- Update the version in `pyproject.toml`
 - Add entry to `CHANGELOG.md`
 - Commit changes
 - Add a git version tag, in format `v1.2.34`

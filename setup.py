@@ -72,6 +72,12 @@ if sys.platform == 'win32':
 
 setup(
     packages=signalflow_packages,
+    package_dir={"": "auxiliary/libs"},
+    include_package_data=True,
+    package_data={
+        "signalflow_stubs": ["*.pyi"],
+        "signalflow": ["*.pyd"],
+    },
     ext_modules=[CMakeExtension('signalflow')],
     cmdclass=dict(build_ext=CMakeBuild),
 )
