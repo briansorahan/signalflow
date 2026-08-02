@@ -184,6 +184,12 @@
 #include <signalflow/node/sequencing/trigger-round-robin.h>
 
 /*------------------------------------------------------------------------
+ * Synchronisation
+ * (header self-guards on HAVE_ABLETON_LINK)
+ *-----------------------------------------------------------------------*/
+#include <signalflow/node/link/ableton-link.h>
+
+/*------------------------------------------------------------------------
  * Analysis and MIR
  *-----------------------------------------------------------------------*/
 #include <signalflow/node/analysis/cross-correlate.h>
