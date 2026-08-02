@@ -176,6 +176,34 @@
     py::class_<FFTTransform, FFTOpNode, NodeRefTemplate<FFTTransform>>(m, "FFTTransform", "Transforms the FFT magnitude spectrum in the X axis. Requires an FFT* input.")
         .def(py::init<NodeRef, NodeRef, NodeRef>(), "input"_a = 0, "flip"_a = 0, "rotate"_a = 0);
     
+    #ifdef HAVE_ABLETON_LINK
+    
+    py::class_<AbletonLinkClock, Node, NodeRefTemplate<AbletonLinkClock>>(m, "AbletonLinkClock", "Emits a single-sample impulse (value 1) at each beat subdivision of the Ableton Link session, and 0 at all other times. With `ticks_per_beat` = 1 this ticks once per beat; higher values subdivide the beat. Behaves like Impulse, so it can drive ClockDivider, Euclidean, Counter, ASREnvelope(clock=...), BufferPlayer(clock=...), etc.")
+        .def(py::init<int, int>(), "quantum"_a = 4, "ticks_per_beat"_a = 1);
+    
+    #endif
+    
+    #ifdef HAVE_ABLETON_LINK
+    
+    py::class_<AbletonLinkPhase, Node, NodeRefTemplate<AbletonLinkPhase>>(m, "AbletonLinkPhase", "Outputs the phase of the Ableton Link session as a ramp from 0 to 1 over each bar of `quantum` beats, wrapping back to 0 at the start of each bar.")
+        .def(py::init<int>(), "quantum"_a = 4);
+    
+    #endif
+    
+    #ifdef HAVE_ABLETON_LINK
+    
+    py::class_<AbletonLinkBeat, Node, NodeRefTemplate<AbletonLinkBeat>>(m, "AbletonLinkBeat", "Outputs the current beat number of the Ableton Link session as a held integer value that increments at each beat.")
+        .def(py::init<int>(), "quantum"_a = 4);
+    
+    #endif
+    
+    #ifdef HAVE_ABLETON_LINK
+    
+    py::class_<AbletonLinkTempo, Node, NodeRefTemplate<AbletonLinkTempo>>(m, "AbletonLinkTempo", "Outputs the current tempo of the Ableton Link session, in beats per minute.")
+        .def(py::init<int>(), "quantum"_a = 4);
+    
+    #endif
+    
     py::class_<Add, Node, NodeRefTemplate<Add>>(m, "Add", "Add each sample of a to each sample of b. Can also be written as a + b")
         .def(py::init<NodeRef, NodeRef>(), "a"_a = 0, "b"_a = 0);
     

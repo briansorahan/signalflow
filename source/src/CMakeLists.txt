@@ -155,6 +155,7 @@ set(SRC ${SRC}
         ${CMAKE_CURRENT_SOURCE_DIR}/node/analysis/onset-detector.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/node/analysis/yin.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/node/analysis/zero-crossing-rate.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/node/link/ableton-link.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/patch/patch-node-spec.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/patch/patch.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/patch/patch-registry.cpp

@@ -54,9 +54,19 @@ cmake_print_variables(CMAKE_OSX_ARCHITECTURES)
 cmake_print_variables(CMAKE_PREFIX_PATH)
 
 #-------------------------------------------------------------------------------
-# Use C++11
+# Optional feature: Ableton Link support (network tempo/beat sync).
+# Off by default; enable with -DHAVE_ABLETON_LINK=ON.
 #-------------------------------------------------------------------------------
-set(CMAKE_CXX_STANDARD 11)
+option(HAVE_ABLETON_LINK "Build Ableton Link nodes (requires C++17)" OFF)
+
+#-------------------------------------------------------------------------------
+# Use C++11, unless Ableton Link is enabled, which requires C++17.
+#-------------------------------------------------------------------------------
+if (HAVE_ABLETON_LINK)
+    set(CMAKE_CXX_STANDARD 17)
+else()
+    set(CMAKE_CXX_STANDARD 11)
+endif()
 set(CMAKE_MACOSX_RPATH 1)
 
 #-------------------------------------------------------------------------------
@@ -207,6 +217,21 @@ if (VAMP)
     target_link_libraries(signalflow ${VAMP})
 else()
     message(WARNING "Couldn't find vamp")
+endif()
+
+#-------------------------------------------------------------------------------
+# Optional dependency: Ableton Link (bundled under source/lib/link).
+#
+# Include the SDK's config (which defines the Ableton::Link INTERFACE target,
+# carrying the header include dirs, bundled asio, platform socket libraries and
+# the mandatory LINK_PLATFORM_* define). We deliberately do NOT add_subdirectory()
+# the SDK, as its top-level CMakeLists also builds example/extension binaries.
+#-------------------------------------------------------------------------------
+if (HAVE_ABLETON_LINK)
+    message("Building with Ableton Link support")
+    include("${CMAKE_CURRENT_SOURCE_DIR}/source/lib/link/AbletonLinkConfig.cmake")
+    add_definitions(-DHAVE_ABLETON_LINK)
+    target_link_libraries(signalflow Ableton::Link)
 endif()
 
 #-------------------------------------------------------------------------------

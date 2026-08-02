@@ -42,11 +42,12 @@ class NodeClass:
         return self.name.lower()
 
 
-node_superclasses = ["Node", "UnaryOpNode", "BinaryOpNode", "StochasticNode", "VariableInputNode", "FFTNode", "FFTOpNode", "LFO"]
+node_superclasses = ["Node", "UnaryOpNode", "BinaryOpNode", "StochasticNode", "VariableInputNode", "FFTNode", "FFTOpNode", "LFO", "AbletonLinkNode"]
 omitted_classes = ["GrainSegments", "FFTZeroPhase", "FFTOpNode", "FFTNode",
-                   "StochasticNode"]
+                   "StochasticNode", "AbletonLinkNode"]
 macos_only_classes = ["MouseX", "MouseY", "MouseDown", "FFTConvolve", "BinauralPanner"]
 vamp_only_classes = ["VampAnalysis"]
+ableton_link_only_classes = ["AbletonLinkClock", "AbletonLinkPhase", "AbletonLinkBeat", "AbletonLinkTempo"]
 known_parent_classes = ["Node", "StochasticNode", "VariableInputNode", "FFTNode", "FFTOpNode"]
 documentation_omit_folders = ["io"]
 documentation_omit_classes = ["Constant"]
@@ -280,6 +281,8 @@ def generate_bindings(node_classes) -> None:
                 output += "#ifdef __APPLE__\n\n"
             if cls.name in vamp_only_classes:
                 output += "#ifdef HAVE_VAMP\n\n"
+            if cls.name in ableton_link_only_classes:
+                output += "#ifdef HAVE_ABLETON_LINK\n\n"
 
             output += generate_class_bindings(cls)
             output = output.strip()
@@ -287,6 +290,8 @@ def generate_bindings(node_classes) -> None:
             if cls.name in macos_only_classes:
                 output += "#endif\n\n"
             if cls.name in vamp_only_classes:
+                output += "#endif\n\n"
+            if cls.name in ableton_link_only_classes:
                 output += "#endif\n\n"
 
     output = re.sub("\n", "\n    ", output)
