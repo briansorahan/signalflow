@@ -1,6 +1,6 @@
 [project]
 name = "signalflow"
-version = "0.6.0"
+version = "0.6.1"
 description = "SignalFlow is a sound synthesis library designed for clear and concise expression of sonic ideas"
 readme = "README.md"
 requires-python = ">= 3.13"
